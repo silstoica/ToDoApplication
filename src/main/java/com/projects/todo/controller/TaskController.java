@@ -20,7 +20,7 @@ public class TaskController {
 
     @GetMapping
     public String list(Model model){
-        List <Task> tasks = taskService.findAll();
+        List <Task> tasks = taskService.findAllByUser();
         model.addAttribute("tasks", tasks);
         return "tasks-list";
     }

@@ -16,15 +16,19 @@ public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepository;
     private final UserService userService;
+    private final UserDetailsServiceImpl userDetailsService;
 
     @Autowired
     public TaskServiceImpl(TaskRepository taskRepository, UserService userService, UserDetailsServiceImpl userDetailsService) {
         this.taskRepository = taskRepository;
         this.userService = userService;
+        this.userDetailsService = userDetailsService;
     }
 
     @Override
     public Task save(Task task){
+        ToDoUserDetails currentUser = userDetailsService.getCurrentUser();
+        task.setUser(userService.getOne(currentUser.getId()));
 
         return taskRepository.save(task);
     }
@@ -42,6 +46,12 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void delete(long id) {
         taskRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Task> findAllByUser() {
+        ToDoUserDetails currentUser = userDetailsService.getCurrentUser();
+        return taskRepository.findAllByUserId(currentUser.getId());
     }
 
     @Override
