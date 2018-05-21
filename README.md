@@ -7,9 +7,9 @@ A simple To-Do web application with basic CRUD operations and login form.
 
 ### Prerequisites
 
-Java 1.8 (JDK and JRE)
-A Java running IDE
-Maven 
+- Java 1.8 (JDK and JRE)
+- Java running IDE
+- Maven 
 
 ### Installing
 
