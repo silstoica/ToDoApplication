@@ -13,7 +13,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Size(min = 6, message = "User name has to have at least 5 characters")
+    @Size(min = 5, message = "User name has to have at least 5 characters")
     private String username;
     @Size(min = 6, message = "Password must have at least 6 characters")
     private String password;
