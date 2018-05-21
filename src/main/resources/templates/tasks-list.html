@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do</title>
+</head>
+<body>
+   <p><a th:href="@{/login}">Log out</a></p>
+   <h1>Tasks list</h1>
+   <table>
+       <thead>
+            <th>Task name</th>
+            <th>Deadline</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th th:colspan="2">Actions</th>
+       </thead>
+       <tbody>
+            <tr th:each="task : ${tasks}" th:with="deadline=${task.deadline}">
+                <td th:text="${task.name}"></td>
+                <td th:text="${#dates.format(deadline, 'dd-MM-yyyy')}"></td>
+                <td th:text="${task.priority.displayName}"></td>
+                <td th:text="${task.status.displayName}"></td>
+                <td>
+                    <form th:action="@{/tasks/edit/} + ${task.id}" method="GET">
+                        <button>Edit</button>
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/tasks/delete/} + ${task.id}" method="GET">
+                        <button>Delete</button>
+                    </form>
+                </td>
+            </tr>
+       </tbody>
+   </table>
+    <br>
+
+   <form th:action="@{/tasks/new}" method="GET">
+       <button>Add</button>
+   </form>
+</body>
+</html>

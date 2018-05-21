@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do</title>
+</head>
+<body>
+<h3>New task</h3>
+    <form th:action="@{/tasks}" method="POST" th:object="${task}">
+        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        <input type="text" th:field="*{name}"  th:placeholder="Name"/> <br/>
+
+        <div th:if="${#fields.hasErrors('deadline')}" th:errors="*{deadline}"></div>
+        <input type="date" th:field="*{deadline}"  /> <br/>
+
+        <select th:field="*{priority}">
+            <option  th:each="priority : ${T(com.projects.todo.model.Priority).values()}" th:value="${{priority}}" th:text="${priority.displayName}"></option>
+        </select><br>
+        <select th:field="*{status}">
+            <option  th:each="status : ${T(com.projects.todo.model.Status).values()}" th:value="${{status}}" th:text="${status.displayName}"></option>
+        </select>
+        <br>
+        <button name="Submit" value="submit" type="Submit" th:text="Save"></button>
+        <a th:href="@{/tasks}">
+            <button name="Cancel" th:value="cancel" th:text="Cancel"></button>
+        </a>
+    </form>
+</body>
+</html>
