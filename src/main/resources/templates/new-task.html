@@ -14,10 +14,10 @@
         <input type="date" th:field="*{deadline}"  /> <br/>
 
         <select th:field="*{priority}">
-            <option  th:each="priority : ${T(com.projects.todo.model.Priority).values()}" th:value="${{priority}}" th:text="${priority.displayName}"></option>
+            <option  th:each="priority : ${T(com.projects.todo.enums.Priority).values()}" th:value="${{priority}}" th:text="${priority.displayName}"></option>
         </select><br>
         <select th:field="*{status}">
-            <option  th:each="status : ${T(com.projects.todo.model.Status).values()}" th:value="${{status}}" th:text="${status.displayName}"></option>
+            <option  th:each="status : ${T(com.projects.todo.enums.Status).values()}" th:value="${{status}}" th:text="${status.displayName}"></option>
         </select>
         <br>
         <button name="Submit" value="submit" type="Submit" th:text="Save"></button>
