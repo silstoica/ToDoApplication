@@ -1,5 +1,5 @@
 # ToDoApplication
-A simple To-Do web application with basic CRUD operations and login form.
+"To-Do Tasks Management" Web Application
 
 ## Getting Started
 
